@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<!--
+Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this template
+-->
+<html>
+    <head>
+        <title>ZEBP</title>
+        <meta charset="UTF-8">
+        <link href="css/menu.css" rel="stylesheet" type="text/css"/>
+    <header class="header">
+        <nav class="nav">
+            <a class="logo nav-link" href="index.html">Zapateria El Buen Precio</a>
+            <ul class="nav-menu">
+                <li class="nav-menu-item"><a class="nav-menu-link nav-link" href="ejemplo7.html">TODO</a>              
+                <li class="nav-menu-item"><a class="nav-menu-link nav-link" href="ejemplo2.html">INICIO</a>
+                <li class="nav-menu-item"><a class="nav-menu-link nav-link" href="Mujeres.html">MUJERES</a>
+                <li class="nav-menu-item"><a class="nav-menu-link nav-link" href="hombres.html">HOMBRES</a>
+                <li class="nav-menu-item"><a class="nav-menu-link nav-link" href="accesorios.html">ACCESORIOS</a>
+                <li class="nav-menu-item"><a class="nav-menu-link nav-link" href="modificarUsuario.html">CUENTA</a>
+                <li class="nav-menu-item"><a class="nav-menu-link nav-link" href="formularios.html">SHOP</a>
+                <li class="nav-menu-item"><a class="nav-menu-link nav-link" href="formularios.html">SEARCH</a>
+            </ul>
+        </nav>   
+    </header>
+</head>
+<body-table>
+    <!-- <div style="text-align:center;">--> <!-- texto de lo que hay dentro de la tabla -->
+        <table border="1" style="margin: 0 auto;"> <!-- centrar la tabla -->
+            <br>
+            <br>
+            <thead>
+                <tr>
+                    <th>Id del usuario</th>
+                    <th>Nombre del usuario</th>
+                    <th>Correo del usuario</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr th:each="usuario: ${usuarios}" >
+                    <td>[[${usuario.id_usuario}]]</td>
+                    <td>[[${usuario.nombre}]]</td>
+                    <td>[[${usuario.correo}]]</td>
+                </tr>
+            </tbody>
+        </table>
+</body-table>
+</html>
