@@ -23,26 +23,4 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this temp
             </ul>
         </nav>   
     </header>
-</head>
-<body-table>
-    <!-- <div style="text-align:center;">--> <!-- texto de lo que hay dentro de la tabla -->
-        <table border="1" style="margin: 0 auto;"> <!-- centrar la tabla -->
-            <br>
-            <br>
-            <thead>
-                <tr>
-                    <th>Id del usuario</th>
-                    <th>Nombre del usuario</th>
-                    <th>Correo del usuario</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr th:each="usuario: ${usuarios}" >
-                    <td>[[${usuario.id_usuario}]]</td>
-                    <td>[[${usuario.nombre}]]</td>
-                    <td>[[${usuario.correo}]]</td>
-                </tr>
-            </tbody>
-        </table>
-</body-table>
 </html>
