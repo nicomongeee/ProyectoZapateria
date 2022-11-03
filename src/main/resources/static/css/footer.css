@@ -1,0 +1,13 @@
+*{
+    margin: 0;
+    box-sizing: border-box;
+}
+
+.footer{
+    background-color: #E9C03A;
+    height: 95px;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+}
