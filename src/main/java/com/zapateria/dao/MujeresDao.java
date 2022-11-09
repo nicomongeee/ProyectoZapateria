@@ -1,13 +1,8 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Interface.java to edit this template
- */
 package com.zapateria.dao;
 
-/**
- *
- * @author Dell
- */
-public interface MujeresDao {
-    
+import com.zapateria.domain.Mujeres;
+import org.springframework.data.jpa.repository.JpaRepository;
+
+public interface MujeresDao extends JpaRepository<Mujeres, Long> { //lo que esta entre <> es lo que hace que podamos interactuar con la tabla
+
 }

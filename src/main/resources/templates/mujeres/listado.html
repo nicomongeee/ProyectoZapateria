@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html 
+    xmlns:th="http://www.thymeleaf.org"
+    xmlns="http://www.w3.org/1999/xhtml">
+    <head>
+        <title>TechShop</title>
+        <meta charset="UTF-8"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+        <link href="/css/menu.css" rel="stylesheet" type="text/css"/>
+    </head>
+    <body>
+        <header th:replace="layout/plantillas :: header"/>
+        <div class="contenido">
+            <h2>Datos de los Articulos de Mujer</h2>
+            <a th:href="@{/mujeres/nuevo}">Nuevos Articulos</a>  <!-- un url -->
+            <div th:if="${mujeres != null and !mujeres.empty}">
+                <table border="1">
+                    <thead>
+                        <tr>
+                            <th>Cantidad</th>
+                            <th>Talla</th>
+                            <th>Color</th>
+                            <th>Precio</th>
+                            <th>Activo</th>
+                            <th>Eliminar</th>
+                            <th>Modificar</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr th:each="usuario : ${mujeres}">
+                            <td>[[${mujeres.cantidad}]]</td>
+                            <td>[[${mujeres.talla}]]</td>
+                            <td>[[${mujeres.color}]]</td>
+                            <td>[[${mujeres.precio}]]</td>
+                            <td>[[${mujeres.activo}]]</td>
+                            <td><a th:href="@{/mujeres/elimina/} + ${mujeres.idUsuario}">Eliminar</a></td>
+                            <td><a th:href="@{/mujeres/actualiza/} + ${mujeres.idUsuario}">Actualizar</a></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div th:if="${mujeres == null or mujeres.empty}">
+                <h3>No tenemos datos que mostrar</h3>
+            </div>
+        </div>
+        <footer th:replace="layout/plantillas :: footer"/>
+    </body>
+</html>

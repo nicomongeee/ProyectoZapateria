@@ -8,13 +8,25 @@
 
     </head>
     <body>
-        
-        <header th:fragment="header">
-            <h1>...</h1>
+
+        <header th:fragment="header" class="header">
+            <nav class="nav">
+                <a class="logo nav-link" th:href="@{/}">Zapateria El Buen Precio</a>
+                <ul class="nav-menu">
+                    <li class="nav-menu-item">
+                        <a class="nav-menu-link nav-link" th:href="@{/usuario/listado}">Usuarios</a></li>             
+                    <li class="nav-menu-item">
+                        <a class="nav-menu-link nav-link" th:href="@{/mujeres/listado}">Mujeres</a></li>  
+                    <li class="nav-menu-item">
+                        <a class="nav-menu-link nav-link" th:href="@{/mujeres/listado}">Carrito</a></li>   
+                    <li class="nav-menu-item">
+                        <a class="nav-menu-link nav-link" th:href="@{/mujeres/listado}">Buscar</a></li>   
+                </ul>
+            </nav> 
         </header>
-        
-        <footer th:fragment="footer">
-            <p>© 2022 – Zapatería Buen Precio – Todos los derechos reservados. Sitio desarrollado por Grupo 7</p>
+
+        <footer th:fragment="footer" class="footer">
+            <p>&COPY; Derechos Reservados 2022, Creada por Grupo siete</p>
         </footer>
 
 

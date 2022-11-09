@@ -1,13 +1,52 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package com.zapateria.controller;
 
-/**
- *
- * @author Dell
- */
+import com.zapateria.domain.Mujeres;
+import com.zapateria.services.MujeresService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+
+@Controller
 public class MujeresController {
-    
+
+    @Autowired
+
+    private MujeresService mujeresService;
+
+    @GetMapping("/mujeres/listado")
+    public String inicio(Model model) {
+
+        var mujeres = mujeresService.getMujeres(false); //hace select de la tabla y devuelve un arraylist
+
+        model.addAttribute("mujeres", mujeres);
+
+        return "/mujeres/listado";
+    }
+
+    //mapeo de los recursos
+    @GetMapping("/mujeres/nuevo")
+    public String mujeresNuevo(Mujeres mujeres) {
+        return "/mujeres/modificar";
+    }
+
+    @PostMapping("/mujeres/guardar")
+    public String mujeresGuardar(Mujeres mujeres) {
+        mujeresService.save(mujeres);
+        return "redirect:/mujeres/listado"; //para redireccionar la ruta
+    }
+
+    @GetMapping("/mujeres/actualiza/{idMujeres}")
+    public String mujeresActualiza(Mujeres mujeres, Model model) {
+        mujeres = mujeresService.getMujeres(mujeres); // va y hace un select en la tabla
+        model.addAttribute("mujeres", mujeres);
+        return "/mujeres/modificar";
+    }
+
+    @GetMapping("/mujeres/elimina/{idMujeres}")
+    public String mujeresElimina(Mujeres mujeres) {
+        mujeresService.delete(mujeres); // va y hace un select en la tabla
+        return "redirect:/mujeres/listado";
+    }
 }

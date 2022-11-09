@@ -1,13 +1,15 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Interface.java to edit this template
- */
 package com.zapateria.services;
 
-/**
- *
- * @author Dell
- */
+import com.zapateria.domain.Mujeres;
+import java.util.List;
+
 public interface MujeresService {
-    
+
+    public List<Mujeres> getMujeres(boolean activo);
+
+    public Mujeres getMujeres(Mujeres mujeres);
+
+    public void save(Mujeres mujeres);
+
+    public void delete(Mujeres mujeres);
 }
