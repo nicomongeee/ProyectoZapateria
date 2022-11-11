@@ -27,7 +27,7 @@ public class MujeresServiceImpl implements MujeresService {
     @Override
     @Transactional(readOnly = true)
     public Mujeres getMujeres(Mujeres mujeres) {
-        return mujeresDao.findById(mujeres.getIdProductoM()).orElse(null);
+        return mujeresDao.findById(mujeres.getIdMujer()).orElse(null);
     }
 
     @Override

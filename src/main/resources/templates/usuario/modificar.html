@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html 
+    xmlns:th="http://www.thymeleaf.org"
+    xmlns="http://www.w3.org/1999/xhtml">
+    <head>
+        <title>Zapateria El Buen Precio</title>
+        <meta charset="UTF-8"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+        <link href="/css/menu.css" rel="stylesheet" type="text/css"/>
+    </head>
+    <body>
+        <header th:replace="layout/plantillas :: header"/>
+        <div class="contenido">
+            <h2>Datos de Usuario</h2>
+            <a th:href="@{/usuario/listado}">Regresar</a>  <!-- un url -->
+            <hr/>
+            <form th:action="@{/usuario/guardar}"
+                  method="post"
+                  th:object="${usuario}">  
+                <input type="hidden" name="idUsuario" th:field="*{idUsuario}"/>
+
+                <fieldset>
+                    <label for="nombre">Nombre:</label> 
+                    <input type="text" 
+                           name="nombre" 
+                           th:field="*{nombre}"/>
+                </fieldset>
+
+                <fieldset>
+                    <label for="correo">Correo</label> 
+                    <input type="email" 
+                           placeholder="correo@xxxx.com"
+                           name="correo" 
+                           th:field="*{correo}"/> 
+                </fieldset>
+
+                <fieldset>
+                    <label for="direccion">Direccion</label> 
+                    <input type="text" 
+                           name="direccion" 
+                           th:field="*{direccion}"/> 
+                </fieldset>
+
+                <fieldset>
+                    <label for="telefono">Telefono</label> 
+                    <input type="tel" 
+                           name="telefono" 
+                           th:field="*{telefono}"/> 
+                </fieldset>
+                <hr/>
+                <input type="submit" name="guardar" value="guardar"/>
+            </form>  
+        </div>
+        <footer th:replace="layout/plantillas :: footer"/>
+    </body>
+</html>

@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 
 @Controller
 public class UsuarioController {
+
     @Autowired
 
     private UsuarioService usuarioService;
@@ -17,9 +18,9 @@ public class UsuarioController {
     @GetMapping("/usuario/listado")
     public String inicio(Model model) {
 
-        var usuario = usuarioService.getUsuario(); //hace select de la tabla y devuelve un arraylist
+        var usuarios = usuarioService.getUsuario(); //hace select de la tabla y devuelve un arraylist
 
-        model.addAttribute("usuario", usuario);
+        model.addAttribute("usuarios", usuarios);
 
         return "/usuario/listado";
     }

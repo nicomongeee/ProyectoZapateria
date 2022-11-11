@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html 
+    xmlns:th="http://www.thymeleaf.org"
+    xmlns="http://www.w3.org/1999/xhtml">
+    <head>
+        <title>ZEBP</title>
+        <meta charset="UTF-8"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+        <link href="/css/menu.css" rel="stylesheet" type="text/css"/>
+        <link href="/css/estilos.css" rel="stylesheet" type="text/css"/>
+    </head>
+    <body>
+        <header th:replace="layout/plantillas :: header"/>
+        <div class="contenido">
+            <h2>¡PEDIDO REALIZADO CON ÉXITO!</h2>
+            <div th:if="${carritos != null and !carritos.empty}">
+
+
+                <hr/>
+
+                <h4>PRODUCTOS:</h4>
+
+                <table border="1">
+                    <thead>
+                        <tr>
+                            <th>Nombre del producto:</th>
+                            <th>Código:</th>
+                            <th>Talla:</th>
+                            <th>Cantidad:</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr th:each="carrito:${carritos}">
+                            <td>Info nombre</td>
+                            <td>info código</td>
+                            <td>info talla</td>
+                            <td>info cantidad</td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <hr/>
+
+                <h4>SUBTOTAL:</h4>
+
+                <hr/>
+
+                <h4>DATOS DEL ENVÍO:</h4>
+
+                <table border="1">
+                    <thead>
+                        <tr th:each="carrito:${carritos}">
+                            <th>Envío</th>
+                            <th>Precio del envío</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Info del envío</td>
+                            <td>Precio del envío</td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <hr/>
+
+                <h4>TOTAL:</h4>
+
+                <hr/>
+
+
+            </div>
+        </div>
+        <footer th:replace="layout/plantillas :: footer"/>
+    </body>
+</html>

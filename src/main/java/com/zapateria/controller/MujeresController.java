@@ -37,14 +37,14 @@ public class MujeresController {
         return "redirect:/mujeres/listado"; //para redireccionar la ruta
     }
 
-    @GetMapping("/mujeres/actualiza/{idMujeres}")
+    @GetMapping("/mujeres/actualiza/{idMujer}")
     public String mujeresActualiza(Mujeres mujeres, Model model) {
         mujeres = mujeresService.getMujeres(mujeres); // va y hace un select en la tabla
         model.addAttribute("mujeres", mujeres);
         return "/mujeres/modificar";
     }
 
-    @GetMapping("/mujeres/elimina/{idMujeres}")
+    @GetMapping("/mujeres/elimina/{idMujer}")
     public String mujeresElimina(Mujeres mujeres) {
         mujeresService.delete(mujeres); // va y hace un select en la tabla
         return "redirect:/mujeres/listado";

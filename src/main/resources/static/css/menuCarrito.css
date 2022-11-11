@@ -9,21 +9,10 @@ body {
 }
 
 .header {
-    background-color: #E9C03A;
+    background-color: white;
     height: 90px;
     position: fixed;
     top: 0;
-    left: 0;
-    width: 100%;
-}
-
-.footer {
-    background-color: #E9C03A;
-    text-align: center;
-    color: black;
-    height: 50px;
-    position: fixed;
-    bottom: 0;
     left: 0;
     width: 100%;
 }
@@ -35,12 +24,12 @@ body {
 }
 
 .nav-link {
-    color: white;
+    color: black;
     text-decoration: none;
 }
 
 .nav-pills {
-    color: white;
+    color: black;
     text-decoration: none;
 }
 
@@ -73,6 +62,17 @@ body {
 .nav-menu-link {
     padding: 8px 12px;
     border-radius: 8px;
+}
+
+.footer {
+    background-color: #E9C03A;
+    text-align: center;
+    color: black;
+    height: 50px;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
 }
 
 .contenido{

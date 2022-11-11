@@ -1,41 +1,41 @@
 package com.zapateria.domain;
-
 import java.io.Serializable;
 import javax.persistence.*;
 import lombok.Data;
 
 @Data
 @Entity
-@Table(name = "mujer")
+@Table(name = "accesorio")
 
-public class Mujeres implements Serializable {
+public class Accesorio implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY) //que sea la DB la que de los valores
-    private Long idMujer;
-
-    private Long idCategoria;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long idAccesorio;
+    
     private double cantidad;
-    private int talla;
     private String color;
+    private String detalle;
     private int precio;
     private String descripcion;
     private boolean activo;
 
-    public Mujeres(Long idCategoria, double cantidad, int talla, String color, int precio, String descripcion, boolean activo) {
-        this.idCategoria = idCategoria;
+    public Accesorio() {
+    }
+
+    public Accesorio(double cantidad, String color, String detalle, int precio, String descripcion, boolean activo) {
         this.cantidad = cantidad;
-        this.talla = talla;
         this.color = color;
+        this.detalle = detalle;
         this.precio = precio;
         this.descripcion = descripcion;
         this.activo = activo;
     }
 
-    public Mujeres() {
+   
 
-    }
+    
 
 }

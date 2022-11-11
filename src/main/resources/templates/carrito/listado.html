@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html 
+    xmlns:th="http://www.thymeleaf.org"
+    xmlns="http://www.w3.org/1999/xhtml">
+    <head>
+        <title>ZEBP</title>
+        <meta charset="UTF-8"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+        <link href="/css/menuCarrito.css" rel="stylesheet" type="text/css"/>
+        <link href="/css/estilos.css" rel="stylesheet" type="text/css"/>
+    </head>
+    <body>
+        <header th:replace="layout/plantillas :: header"/>
+        <div class="contenido">
+            <br/>
+            <h2>Tu Carrito de Compras</h2>
+            <br/>
+            <div th:if="${carritos != null and !carritos.empty}">
+                <br/>
+                <table border="1">
+                    <thead>                       
+                        <tr>
+                            <th>ID del Carrito</th>
+                            <th>Cantidad de productos</th>
+                            <th>Eliminar</th>
+                            <th>Modificar</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr th:each="carrito : ${carritos}">
+                            <td>[[${carrito.idCarrito}]]</td>
+                            <td>[[${carrito.cantidad}]]</td>
+                            <td><a th:href="@{/carrito/elimina/} + ${carrito.idCarrito}">Eliminar</a></td>
+                            <td><a th:href="@{/carrito/actualiza/} + ${carrito.idCarrito}">Actualizar</a></td>
+                        </tr>
+                    </tbody>
+                </table>
+                <br/>
+                <hr/>
+                <br/>
+                <h4>PRODUCTOS:</h4>
+                <br/>
+                <table border="1">
+                    <thead>
+                        <tr>
+                            <th>Nombre del producto:</th>
+                            <th>Código:</th>
+                            <th>Talla:</th>
+                            <th>Cantidad:</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <!-- Aqui faltaría el tr th:each para cada uno de los productos y que se amplie la tabla automática -->
+                            <td>Info nombre</td>
+                            <td>info código</td>
+                            <td>info talla</td>
+                            <td>info cantidad</td>
+                        </tr>
+                    </tbody>
+                </table>
+                <br/>
+                <hr/>
+                <br/>
+                <h4>SUBTOTAL:</h4>
+                <br/>
+                <hr/>
+                <br/>
+                <h4>DATOS DEL ENVÍO:</h4>
+                <br/>
+                <table border="1">
+                    <thead>
+                        <tr>
+                            <!-- Aqui faltaría el tr th:each para cada uno de los precios y que se amplie la tabla automática -->
+                            <th>Envío</th>
+                            <th>Precio del envío</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Info del envío</td>
+                            <td>Precio del envío</td>
+                        </tr>
+                    </tbody>
+                </table>
+                <br/>
+                <hr/>
+                <br/>
+                <h4>TOTAL:</h4>
+                <br/>
+                <hr/>
+                <br/>
+                <a href="/Compra/listado">COMPRAR</a>
+            </div>
+            <div th:if="${carritos == null or carritos.empty}">
+                <h3>No tenemos datos que mostrar</h3>
+            </div>
+        </div>
+        <footer th:replace="layout/plantillas :: footer"/>
+    </body>
+</html>

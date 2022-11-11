@@ -1,0 +1,46 @@
+
+
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns="http://www.w3.org/1999/xhtml">
+    <head>
+        <title>ZEBP</title>
+        <meta charset="UTF-8"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/> 
+        <link href="/css/menu.css" rel="stylesheet" type="text/css"/>
+        <link href="/css/estilos.css" rel="stylesheet" type="text/css"/>
+
+    </head>
+    <body>  
+        <header th:replace="layout/plantillas :: header"/>
+
+        <div class="contenido">
+
+            <h2>Pedidos</h2>
+            <div th:if="${facturas != null and !facturas.empty}">
+                <table border="1">
+                    <thead>
+                        <tr>
+                            <th>Número de factura</th>
+                            <th>Fecha</th>
+                            <th>Total</th>
+                            <th>Estado</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr th:each="factura:${facturas}">
+                            <td>[[${factura.idFactura}]]</td>
+                            <td>[[${factura.fecha}]]</td>
+                            <td>[[${factura.total}]]</td>
+                            <td>[[${factura.estado}]]</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div th:if="${facturas == null or facturas.empty}">
+                <h3>No tenemos pedidos que mostar</h3>  
+            </div>
+        </div>
+        <footer th:replace="layout/plantillas :: footer"/>
+
+    </body>
+</html>

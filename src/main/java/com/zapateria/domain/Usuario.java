@@ -6,30 +6,30 @@ import lombok.Data;
 
 @Data
 @Entity
-@Table(name="usuario")
+@Table(name = "usuario")
 
 public class Usuario implements Serializable {
-    
+
     private static final long serialVersionUID = 1L;
-    
-    @Id //se dice que es la llave primaria
-    @GeneratedValue(strategy = GenerationType.IDENTITY) //que sea la DB la que de los valores
-    private Long id_usuario;
-    
+
+    @Id 
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long idUsuario;
+
     private String nombre;
     private String correo;
-    
-    public Usuario (String nombre, String correo){
+    private String direccion;
+    private int telefono;
+
+    public Usuario(String nombre, String correo, String direccion, int telefono) {
         this.nombre = nombre;
         this.correo = correo;
-        
+        this.direccion = direccion;
+        this.telefono = telefono;
     }
-    
+
     public Usuario() {
-        
+
     }
-    
-    
+
 }
-
-

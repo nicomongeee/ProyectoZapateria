@@ -7,32 +7,36 @@
         <meta charset="UTF-8"/>
         <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
         <link href="/css/menu.css" rel="stylesheet" type="text/css"/>
+        <link href="/css/estilos.css" rel="stylesheet" type="text/css"/>
     </head>
     <body>
         <header th:replace="layout/plantillas :: header"/>
         <div class="contenido">
-            <h2>Datos de Usuarioss</h2>
-            <a th:href="@{/usuarios/nuevo}">Nuevo Usuarios</a>  <!-- un url -->
+            <br/>
+            <h2>Datos de Usuarios</h2>
+            <br/>
+            <a th:href="@{/usuario/nuevo}">Nuevo Usuarios</a>  <!-- un url -->
             <div th:if="${usuarios != null and !usuarios.empty}">
+                <br/>
                 <table border="1">
                     <thead>
                         <tr>
                             <th>Nombre</th>
                             <th>Correo</th>
-                            <th>Telefono</th>
                             <th>Direccion</th>
+                            <th>Telefono</th>                            
                             <th>Eliminar</th>
                             <th>Modificar</th>
                         </tr>
                     </thead>
                     <tbody>
                         <tr th:each="usuario : ${usuarios}">
-                            <td>[[${usuarios.nombre}]]</td>
-                            <td>[[${usuarios.correo}]]</td>
-                            <td>[[${usuarios.telefono}]]</td>
-                            <td>[[${usuarios.telefono}]]</td>
-                            <td><a th:href="@{/usuarios/elimina/} + ${usuarios.idUsuario}">Elimina</a></td>
-                            <td><a th:href="@{/usuarios/actualiza/} + ${usuarios.idUsuario}">Actualiza</a></td>
+                            <td>[[${usuario.nombre}]]</td>
+                            <td>[[${usuario.correo}]]</td>
+                            <td>[[${usuario.direccion}]]</td>
+                            <td>[[${usuario.telefono}]]</td>
+                            <td><a th:href="@{/usuario/elimina/} + ${usuario.idUsuario}">Elimina</a></td>
+                            <td><a th:href="@{/usuario/actualiza/} + ${usuario.idUsuario}">Actualiza</a></td>
                         </tr>
                     </tbody>
                 </table>

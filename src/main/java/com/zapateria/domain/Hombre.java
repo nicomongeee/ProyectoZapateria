@@ -1,22 +1,20 @@
 package com.zapateria.domain;
-
 import java.io.Serializable;
 import javax.persistence.*;
 import lombok.Data;
 
 @Data
 @Entity
-@Table(name = "mujer")
+@Table(name = "hombre")
 
-public class Mujeres implements Serializable {
+public class Hombre implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY) //que sea la DB la que de los valores
-    private Long idMujer;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long idHombre;
 
-    private Long idCategoria;
     private double cantidad;
     private int talla;
     private String color;
@@ -24,8 +22,10 @@ public class Mujeres implements Serializable {
     private String descripcion;
     private boolean activo;
 
-    public Mujeres(Long idCategoria, double cantidad, int talla, String color, int precio, String descripcion, boolean activo) {
-        this.idCategoria = idCategoria;
+    public Hombre() {
+    }
+
+    public Hombre(double cantidad, int talla, String color, int precio, String descripcion, boolean activo) {
         this.cantidad = cantidad;
         this.talla = talla;
         this.color = color;
@@ -34,8 +34,6 @@ public class Mujeres implements Serializable {
         this.activo = activo;
     }
 
-    public Mujeres() {
-
-    }
+    
 
 }

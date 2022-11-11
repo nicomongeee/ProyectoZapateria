@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html 
+    xmlns:th="http://www.thymeleaf.org"
+    xmlns="http://www.w3.org/1999/xhtml">
+    <head>
+        <title>ZEBP</title>
+        <meta charset="UTF-8"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+        <link href="/css/menu.css" rel="stylesheet" type="text/css"/>
+        <link href="/css/estilos.css" rel="stylesheet" type="text/css"/>
+    </head>
+    <body>
+        <header th:replace="layout/plantillas :: header"/>
+        <div class="contenido">
+            <br/>
+            <h2>FINALICE SU COMPRA</h2>
+            <div th:if="${compras != null and !compras.empty}">
+                <table border="1">
+                    <thead>                       
+                        <tr>
+                            <th>ID de la compra:</th>
+                            <th>Nombre Cliente:</th>
+                            <th>Apellidos</th>
+                            <th>Cédula:</th>
+                            <th>País:</th>
+                            <th>Provincia:</th>
+                            <th>Cantón:</th>
+                            <th>Distrito:</th>
+                            <th>Dirección:</th>
+                            <th>Teléfono:</th>
+                            <th>Correo:</th>
+                            <th>Notas:</th>
+                            <th>Eliminar</th>
+                            <th>Modificar</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr th:each="compra:${compras}">
+                            <td>[[${compra.idCompra}]]</td>
+                            <td>[[${compra.nombre}]]</td>
+                            <td>[[${compra.apellidos}]]</td>
+                            <td>[[${compra.cedula}]]</td>
+                            <td>[[${compra.pais}]]</td>
+                            <td>[[${compra.provincia}]]</td>
+                            <td>[[${compra.canton}]]</td>
+                            <td>[[${compra.distrito}]]</td>
+                            <td>[[${compra.direccion}]]</td>
+                            <td>[[${compra.telefono}]]</td>
+                            <td>[[${compra.correo}]]</td>
+                            <td>[[${compra.notas}]]</td>
+                            <td><a th:href="@{/compra/elimina/} + ${compra.idCompra}">Eliminar</a></td>
+                            <td><a th:href="@{/compra/actualiza/} + ${compra.idCompra}">Actualizar</a></td>
+                        </tr>
+                    </tbody>
+                </table>
+                <br/>
+
+                <hr/>
+                <br/>
+
+                <h4>PRODUCTOS:</h4>
+
+                <table border="1">
+                    <thead>
+                        <tr>
+                            <th>Nombre del producto:</th>
+                            <th>Código:</th>
+                            <th>Talla:</th>
+                            <th>Cantidad:</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <!-- Aqui faltaría el tr th:each para cada uno de los productos y que se amplie la tabla automática -->
+                            <td>Info nombre</td>
+                            <td>info código</td>
+                            <td>info talla</td>
+                            <td>info cantidad</td>
+                        </tr>
+                    </tbody>
+                </table>
+                <br/>
+
+                <hr/>
+                <br/>
+
+                <h4>SUBTOTAL:</h4>
+
+                <hr/>
+                <br/>
+
+                <h4>DATOS DEL ENVÍO:</h4>
+
+                <table border="1">
+                    <thead>
+                        <tr>
+                            <!-- Aqui faltaría el tr th:each para cada uno de los precios y que se amplie la tabla automática -->
+                            <th>Envío</th>
+                            <th>Precio del envío</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Info del envío</td>
+                            <td>Precio del envío</td>
+                        </tr>
+                    </tbody>
+                </table>
+                <br/>
+
+                <hr/>
+                <br/>
+
+                <h4>TOTAL:</h4>
+                <br/>
+
+                <hr/>
+                <br/>
+
+                <h4>TARJETAS DE CRÉDITO/DÉBITO</h4>
+
+                <h5>Acá va el código de las tarjetas</h5>
+                <br/>
+
+                <hr/>
+                <br/>
+
+                <h5>*Tus datos personales se utilizarán para procesar el pedido, respaldar tu
+                    experiencia en el sitio web y para su privacidad en las compras*</h5>
+                <br/>
+                <h5>AQUI VA EL CHECK  *He leído y estoy de acuerdo con los términos y condiciones de la web*</h5>
+                <br/>
+
+                <hr/>  
+                <br/>
+
+                <a href="/finalizada/listado/">FINALIZAR COMPRA</a>
+
+            </div>
+            <div th:if="${compras == null or compras.empty}">
+                <h3>No tenemos datos que mostrar</h3>
+
+            </div>
+        </div>
+        <footer th:replace="layout/plantillas :: footer"/>
+    </body>
+</html>

@@ -7,11 +7,6 @@ article header{
     background-color: #E9C03A;
     color: white;
 }
-h2{
-    font-size: 20px;
-    text-align: initial;
-    color: black;
-}
 
 h1{
     text-align: center;
@@ -36,3 +31,30 @@ nav a:hover{ /*mouse sobre el enlace*/
     animation-delay: 1s;
 }
 
+h4{
+    color:darkred;
+    font-family: arial;
+}
+
+tr{
+    color:darkred;
+    font-family: arial;
+}
+
+a{
+    color:darkred;
+    font-family: arial;
+}
+
+h2{
+    font-size: 20px;
+    font-family: arial;
+    text-align: justify;
+    color: darkred;
+}
+
+h5{
+    color:darkred;
+    font-family: arial;
+    text-decoration: underline;
+}

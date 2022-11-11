@@ -1,0 +1,47 @@
+
+
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns="http://www.w3.org/1999/xhtml">
+    <head>
+        <title>ZEBP</title>
+        <meta charset="UTF-8"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/> 
+        <link href="/css/menu.css" rel="stylesheet" type="text/css"/>    
+        <link href="/css/estilos.css" rel="stylesheet" type="text/css"/>
+    </head>
+    <body>  
+        <header th:replace="layout/plantillas :: header"/>
+        <div class="contenido">
+            <br/>
+            <h2>Artículos accesorios</h2>
+            <br/>
+            <div th:if="${accesorios != null and !accesorios.empty}">
+                <table border="1">
+                    <thead>
+                        <tr>
+                            <th>Cantidad</th>
+                            <th>Color</th>
+                            <th>Detalle</th>
+                            <th>Precio</th>
+                            <th>Descripcion</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr th:each="accesorio:${accesorios}">
+                            <td>[[${accesorio.cantidad}]]</td>
+                            <td>[[${accesorio.color}]]</td>
+                            <td>[[${accesorio.detalle}]]</td>
+                            <td>[[${accesorio.precio}]]</td>
+                            <td>[[${accesorio.descripcion}]]</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div th:if="${accesorios == null or accesorios.empty}">
+                <h3>No tenemos accesorios que mostar</h3>  
+            </div>
+        </div>
+        <footer th:replace="layout/plantillas :: footer"/>
+
+    </body>
+</html>
