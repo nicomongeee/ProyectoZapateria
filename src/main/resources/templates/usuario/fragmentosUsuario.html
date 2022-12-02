@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html 
+    xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:th="http://www.thymeleaf.org"
+    xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+    <head>
+        <meta charset="UTF-8"/>
+        <title th:text="#{aplicacion.titulo}">ZEBP</title>
+        <meta charset="UTF-8"/>
+    </head>
+    <body>
+        <section th:fragment="botonesAgregar" class="py-4 mb-4 bg-light">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-3" sec:authorize="hasRole('ROLE_ADMIN')">   
+                        <button 
+                            type="button" 
+                            class="btn btn-primary btn-block" 
+                            data-bs-toggle="modal" 
+                            data-bs-target="#agregarUsuario">
+                            <i class="fas fa-plus"></i> [[#{accion.agregar}]]
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section th:fragment="listadoUsuarios" id="usuarios">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-9">
+                        <div class="card">
+                            <div class="card-header">
+                                <h4>[[#{usuario.titulo}]]</h4>
+                            </div>
+                            <div th:if="${usuarios != null and !usuarios.empty}">
+                                <table class="table table-stryped">
+                                    <thead class="thead-dark">
+                                        <tr>
+                                            <th>#</th>
+                                            <th th:text="#{usuario.nombre}">Nombre</th>
+                                            <th></th>
+                                            <th></th>
+                                        </tr>
+                                    </thead>                                    
+                                </table>
+                            </div>
+                            <div class="text-center p-2" th:if="${usuarios == null or usuarios.empty}">
+                                <span th:text="#{usuario.no_mostrar}">Lista vacía</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section th:fragment="agregarUsuario">
+            <div id="agregarUsuario" class="modal fade" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog modal-lg">
+                    <div class="modal-content">
+                        <div class="modal-header bg-info text-white">
+                            <h5 class="modal-title" th:text="#{accion.agregar}">Agregar Usuario</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div> 
+                        <form th:action="@{/usuario/guardar}" th:object="${usuario}"
+                              method="POST" class="was-validated">
+                            <div class="modal-body">
+                                <div class="form-group">
+                                    <label for="nombre" th:text="#{usuario.nombre}">Nombre</label>
+                                    <input type="text" class="form-control" name="nombre" required="true"/>
+                                </div>
+                                <div class="form-group">
+                                    <label for="email" th:text="#{usuario.correo}">Correo</label>
+                                    <input type="email" class="form-control" name="correo" required="true"/>
+                                </div>
+                                 <div class="form-group">
+                                            <label for="direccion" th:text="#{usuario.direccion}">Direccion </label>
+                                            <input type="direccion"  class="form-control" name="direccion" th:field="*{direccion}"/>
+                                        </div>
+                                <div class="form-group">
+                                    <label for="telefono" th:text="#{usuario.telefono}">Teléfono</label>
+                                    <input type="tel" class="form-control" name="telefono"/>
+                                </div>                                
+                            </div>
+                            <div class="modal-footer">
+                                <button class="btn btn-primary" type="submit" th:text="#{accion.guardar}">Guardar</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section th:fragment="editarUsuario">            
+            <form method="POST"
+                  th:action="@{/usuario/guardar}"
+                  th:object="${usuario}"
+                  class="was-validated">
+                <input type="hidden" name="idUsuario" th:field="*{idUsuario}"/>
+                <section th:replace="usuario/fragmentosUsuario :: botonesEditar"/> 
+                <div id="details">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col">
+                                <div class="card">
+                                    <div class="card-header">
+                                        <h4>[[#{accion.actualizar}]]</h4>
+                                    </div>
+                                    <div class="card-body">
+                                        <div class="form-group">
+                                            <label for="nombre" th:text="#{usuario.nombre}">Nombre: </label>
+                                            <input type="text" class="form-control" name="nombre" th:field="*{nombre}"/>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="email" th:text="#{usuario.correo}">Correo: </label>
+                                            <input type="email" class="form-control" name="correo" th:field="*{correo}"/>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="direccion" th:text="#{usuario.direccion}">Direccion: </label>
+                                            <input type="direccion"  class="form-control" name="direccion" th:field="*{direccion}"/>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="telefono" th:text="#{usuario.telefono}">Teléfono: </label>
+                                            <input type="tel"  class="form-control" name="telefono" th:field="*{telefono}"/>
+                                        </div>                                                      
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </section>
+        <section th:fragment="botonesEditar">
+            <div id="actions" class="py-4 mb-4 bg-light">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-3">
+                            <a th:href="@{/usuario/listado}" class="btn btn-ligth btn-block">
+                                <i class="fas fa-arrow-left"></i> [[#{accion.regresar}]]
+                            </a>
+                        </div>
+                        <div class="col-md-3">
+                            <button type="submit" class="btn btn-success btn-block">
+                                <i class="fas fa-check"></i> [[#{accion.guardar}]]
+                            </button>
+                        </div>
+                        <div class="col-md-3">
+                            <a th:href="@{/usuario/eliminar/}+${usuario.idUsuario}"
+                               class="btn btn-danger btn-block">
+                                <i class="fas fa-trash"></i> [[#{accion.eliminar}]]
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </body>
+</html>

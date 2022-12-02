@@ -1,20 +1,30 @@
 <!DOCTYPE html>
-
-<html  xmlns:th="http://www.thymeleaf.org"
-       xmlns="http://www.w3.org/1999/xhtml">
-    <head>
-        <title>ZEBP</title>
+<html 
+    xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:th="http://www.thymeleaf.org"
+    xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+    <head th:replace="layout/plantillas :: head">
+        <title th:text="#{aplicacion.titulo}">TechShop</title>
         <meta charset="UTF-8"/>
-        <link href="/css/menu.css" rel="stylesheet" type="text/css"/>
-        <link href="/css/estilos.css" rel="stylesheet" type="text/css"/>
     </head>
     <body>
         <header th:replace="layout/plantillas :: header"/>
-        <div class="contenido">
-            <img src="img/aLOGO.jpg" width="100%" height="400"/>
-            <br/>
-            <h2>Todos nuestros productos </h2>
+        <div class="container">
+            <h2 th:text="#{index.titulo}">Nuestros Articulos</h2>            
+            <div class="row row-cols-3" th:if="${articulos != null and !articulos.empty}">
+                <div class="card" th:each="articulo : ${articulos}" >
+                         <img src="/img/leopardo.jpg" class="card-img-top" alt="equipo"/>  
+                    <div class="card-body">
+                        <h5 class="card-title">[[${articulo.descripcion}]]</h5>
+                        <h6 class="card-subtitle mb-2 text-muted text-end">[[${new java.text.DecimalFormat('¢#,##0.00').format(articulo.precio)}]]</h6>
+                        <p class="card-text">[[${articulo.detalle}]]</p>                        
+                    </div>
+                </div>                
+            </div>
+            <div th:if="${articulos == null or articulos.empty}"  th:text="#{articulo.no_mostrar}">
+                No tenemos lista de articulos que mostrar...
+            </div>
         </div>
         <footer th:replace="layout/plantillas :: footer"/>
-    </body> 
+    </body>
 </html>

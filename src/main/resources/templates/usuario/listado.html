@@ -1,21 +1,18 @@
 <!DOCTYPE html>
 <html 
     xmlns:th="http://www.thymeleaf.org"
-    xmlns="http://www.w3.org/1999/xhtml">
-    <head>
-        <title>TechShop</title>
-        <meta charset="UTF-8"/>
-        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-        <link href="/css/menu.css" rel="stylesheet" type="text/css"/>
-        <link href="/css/estilos.css" rel="stylesheet" type="text/css"/>
+    xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+    <head th:replace="layout/plantillas :: head">
+        <title th:text="#{aplicacion.titulo}">Zapateria El Buen Precio</title>
+        <meta charset="UTF-8"/>        
     </head>
     <body>
         <header th:replace="layout/plantillas :: header"/>
         <div class="contenido">
             <br/>
-            <h2>Datos de Usuarios</h2>
+            <h2 th:text="#{usuario.titulo}">Usuarios</h2>
             <br/>
-            <a th:href="@{/usuario/nuevo}">Nuevo Usuarios</a>  <!-- un url -->
             <div th:if="${usuarios != null and !usuarios.empty}">
                 <br/>
                 <table border="1">
@@ -40,11 +37,13 @@
                         </tr>
                     </tbody>
                 </table>
+                <br/>
             </div>
             <div th:if="${usuarios == null or usuarios.empty}">
-                <h3>No tenemos usuarios que mostrar</h3>
+                <h3 th:text="#{usuarios.no_mostrar}">No tenemos datos que mostrar</h3>
             </div>
         </div>
         <footer th:replace="layout/plantillas :: footer"/>
     </body>
 </html>
+

@@ -1,0 +1,31 @@
+ .f1{
+            text-align: center;
+            height:300px;
+            padding:12px;
+                
+        }
+        .avatar{
+            width: 200px;
+            height: 200px;
+            border-radius: 50%;
+        }
+        .user-n{
+            font-size: 18px;
+            margin-top: 14px;
+        }
+        .socials{
+            list-style: none;
+            text-align: center;
+            padding:0;
+        }
+        .socials li{
+            display: inline-block;
+            margin: 5px;
+        }
+        .dire{
+            text-decoration: none;
+            color:#AF3D25;
+        }
+        .dire:hover{
+            color:#542A21;
+        }

@@ -24,6 +24,7 @@ public class UsuarioController {
 
         return "/usuario/listado";
     }
+ 
 
     //mapeo de los recursos
     @GetMapping("/usuario/nuevo")

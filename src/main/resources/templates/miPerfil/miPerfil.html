@@ -1,0 +1,33 @@
+<html 
+    xmlns:th="http://www.thymeleaf.org"
+    xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+    
+    <head th:replace="layout/plantillas :: head">
+        <title th:text="#{aplicacion.titulo}">Zapateria El Buen Precio</title>
+        <link href="/css/miPerfil.css" rel="stylesheet" type="text/css"/>
+        <meta charset="UTF-8"/>        
+    </head>
+        
+    <body>
+        <header th:replace="layout/plantillas :: header"/>
+        <div class="contenido">
+            <div class="f1">
+            <h2 th:text="#{usuario.titulo}">Mi perfil</h2>
+            <img class="avatar" src="../../static/imgLogos/mujer.png" alt=""/> 
+            <h1 class="user-n">Mónica Monterrosa</h1>
+            </div>
+            <ul class="socials">
+                <li>
+                    <a class="dire" href="../compra/listado.html">Pedidos</a> 
+                </li>
+                <li>
+                    <a class="dire" href="../carrito/listado.html">Mi carrito</a>
+                </li>
+            </ul>
+            <div>
+        </div>
+        <footer th:replace="layout/plantillas :: footer"/>
+    </body>
+
+</html>
