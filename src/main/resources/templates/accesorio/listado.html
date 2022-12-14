@@ -7,39 +7,24 @@
         <title th:text="#{aplicacion.titulo}">TechShop</title>
         <meta charset="UTF-8"/>
     </head>
-    <body>  
+    <body>
         <header th:replace="layout/plantillas :: header"/>
-        <div class="contenido">
-            <br/>
-            <h2>Artículos accesorios</h2>
-            <br/>
-            <div th:if="${accesorios != null and !accesorios.empty}">
-                <table border="1">
-                    <thead>
-                        <tr>
-                            <th>Cantidad</th>
-                            <th>Color</th>
-                            <th>Detalle</th>
-                            <th>Precio</th>
-                            <th>Descripcion</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr th:each="accesorio:${accesorios}">
-                            <td>[[${accesorio.cantidad}]]</td>
-                            <td>[[${accesorio.color}]]</td>
-                            <td>[[${accesorio.detalle}]]</td>
-                            <td>[[${accesorio.precio}]]</td>
-                            <td>[[${accesorio.descripcion}]]</td>
-                        </tr>
-                    </tbody>
-                </table>
+        <div class="container">
+            <h2 th:text="#{index.titulo}">Nuestros Articulos</h2>            
+            <div class="row row-cols-3" th:if="${accesorios != null and !accesorios.empty}">
+                <div class="card" th:each="accesorio : ${accesorios}" >
+                    <img src="/img/leopardo.jpg" class="card-img-top" alt="equipo"/>  
+                    <div class="card-body">
+                        <h5 class="card-title">[[${accesorio.descripcion}]]</h5>
+                        <h6 class="card-subtitle mb-2 text-muted text-end">[[${new java.text.DecimalFormat('¢#,##0.00').format(accesorio.precio)}]]</h6>
+                        <p class="card-text">[[${accesorio.color}]]</p>  
+                    </div>
+                </div>                
             </div>
-            <div th:if="${accesorios == null or accesorios.empty}">
-                <h3>No tenemos accesorios que mostar</h3>  
+            <div th:if="${accesorios == null or accesorios.empty}"  th:text="#{accesorio.no_mostrar}">
+                No tenemos lista de accesorioes que mostrar...
             </div>
         </div>
         <footer th:replace="layout/plantillas :: footer"/>
-
     </body>
 </html>

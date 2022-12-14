@@ -16,25 +16,25 @@ public class Articulo implements Serializable {
     private Long idArticulo;
 
     private Long idCategoria;
-    private double cantidad;
-    private int talla;
-    private String color;
-    private int precio;
     private String descripcion;
+    private String detalle;
+    private double precio;
+    private int existencias;
     private boolean activo;
     @Column(name="ruta_imagen")
     private String rutaImagen;
 
-    public Articulo(Long idCategoria, double cantidad, int talla, String color, int precio, String descripcion, boolean activo) {
+    public Articulo(Long idCategoria, String descripcion, String detalle, double precio, int existencias, boolean activo, String rutaImagen) {
         this.idCategoria = idCategoria;
-        this.cantidad = cantidad;
-        this.talla = talla;
-        this.color = color;
-        this.precio = precio;
         this.descripcion = descripcion;
+        this.detalle = detalle;
+        this.precio = precio;
+        this.existencias = existencias;
         this.activo = activo;
+        this.rutaImagen = rutaImagen;
     }
 
+    
     public Articulo() {
 
     }

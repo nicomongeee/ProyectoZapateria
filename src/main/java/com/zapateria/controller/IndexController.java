@@ -1,5 +1,6 @@
 package com.zapateria.controller;
 
+import com.zapateria.services.ArticuloService;
 import com.zapateria.services.UsuarioService;
 import java.util.Arrays;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,14 +13,14 @@ public class IndexController {
 
     @Autowired
 
-    private UsuarioService usuarioService;
+    private ArticuloService articuloService;
 
     @GetMapping("/")
     public String inicio(Model model) {     
         
-        var usuarios = usuarioService.getUsuario(); //hace select de la tabla y devuelve un arraylist
+        var articulo = articuloService.getArticulo(true); //hace select de la tabla y devuelve un arraylist
 
-        model.addAttribute("usuarios", usuarios);
+        model.addAttribute("articulo", articulo);
 
         return "index";
     }

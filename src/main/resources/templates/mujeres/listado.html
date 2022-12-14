@@ -9,36 +9,21 @@
     </head>
     <body>
         <header th:replace="layout/plantillas :: header"/>
-        <div class="contenido">
-            <br/>
-            <h2 th:text="#{mujeres.titulo}">Mujeres</h2>
-            <br/>
-            <div th:if="${mujeres != null and !mujeres.empty}">
-                <br/>
-                <table border="1">
-                    <thead>
-                        <tr>
-                            <th>Cantidad</th>
-                            <th>Talla</th>
-                            <th>Color</th>
-                            <th>Precio</th>
-                            <th>Descripcion</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr th:each="mujeres : ${mujeres}">
-                            <td>[[${mujeres.cantidad}]]</td>
-                            <td>[[${mujeres.talla}]]</td>
-                            <td>[[${mujeres.color}]]</td>
-                            <td>[[${mujeres.precio}]]</td>
-                            <td>[[${mujeres.descripcion}]]</td>
-                        </tr>
-                    </tbody>
-                </table>
-                <br/>
+        <div class="container">
+            <h2 th:text="#{index.titulo}">Nuestros Articulos</h2>            
+            <div class="row row-cols-3" th:if="${mujeres != null and !mujeres.empty}">
+                <div class="card" th:each="mujer : ${mujeres}" >
+                    <img src="/img/leopardo.jpg" class="card-img-top" alt="equipo"/>  
+                    <div class="card-body">
+                        <h5 class="card-title">[[${mujer.descripcion}]]</h5>
+                        <h6 class="card-subtitle mb-2 text-muted text-end">[[${new java.text.DecimalFormat('¢#,##0.00').format(mujer.precio)}]]</h6>
+                        <p class="card-text">[[${mujer.color}]]</p>     
+                        <p class="card-text">[[${mujer.talla}]]</p>   
+                    </div>
+                </div>                
             </div>
-            <div th:if="${mujeres == null or mujeres.empty}">
-                <h3 th:text="#{mujeres.no_mostrar}">No tenemos datos que mostrar</h3>
+            <div th:if="${mujeres == null or mujeres.empty}"  th:text="#{mujer.no_mostrar}">
+                No tenemos lista de mujeres que mostrar...
             </div>
         </div>
         <footer th:replace="layout/plantillas :: footer"/>
