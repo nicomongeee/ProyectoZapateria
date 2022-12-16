@@ -21,6 +21,8 @@ public class Hombre implements Serializable {
     private int precio;
     private String descripcion;
     private boolean activo;
+    @Column(name="ruta_imagen")
+    private String rutaImagen;
 
     public Hombre() {
     }

@@ -12,12 +12,20 @@
         <div class="container">
             <h2 th:text="#{index.titulo}">Nuestros Articulos</h2>            
             <div class="row row-cols-3" th:if="${accesorios != null and !accesorios.empty}">
-                <div class="card" th:each="accesorio : ${accesorios}" >
-                    <img src="/img/leopardo.jpg" class="card-img-top" alt="equipo"/>  
+                <div class="card" th:each="accesorio : ${accesorios}" >  
                     <div class="card-body">
+                        <img th:src="@{${accesorio.rutaImagen}}" width="120"/>
                         <h5 class="card-title">[[${accesorio.descripcion}]]</h5>
                         <h6 class="card-subtitle mb-2 text-muted text-end">[[${new java.text.DecimalFormat('¢#,##0.00').format(accesorio.precio)}]]</h6>
-                        <p class="card-text">[[${accesorio.color}]]</p>  
+                        <p class="card-text">[[${accesorio.color}]]</p> 
+                        <form>
+                        <input type="hidden" name="texto" th:value="${accesorio.idAccesorio}"/>
+                        <button class="btn btn-ligth" id="addCar" name="addCar" onclick="addCard(this.form)"
+                                type="button">
+                            <i class="fas fa-cart-plus"></i>
+                        </button>
+                    </form>
+                    <p class="card-text">[[${accesorio.detalle}]]</p> 
                     </div>
                 </div>                
             </div>

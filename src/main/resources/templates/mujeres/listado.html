@@ -13,13 +13,22 @@
             <h2 th:text="#{index.titulo}">Nuestros Articulos</h2>            
             <div class="row row-cols-3" th:if="${mujeres != null and !mujeres.empty}">
                 <div class="card" th:each="mujer : ${mujeres}" >
-                    <img src="/img/leopardo.jpg" class="card-img-top" alt="equipo"/>  
                     <div class="card-body">
                         <h5 class="card-title">[[${mujer.descripcion}]]</h5>
+                        <img th:src="@{${mujer.rutaImagen}}" width="120"/>
                         <h6 class="card-subtitle mb-2 text-muted text-end">[[${new java.text.DecimalFormat('¢#,##0.00').format(mujer.precio)}]]</h6>
                         <p class="card-text">[[${mujer.color}]]</p>     
-                        <p class="card-text">[[${mujer.talla}]]</p>   
+
                     </div>
+                    <form>
+                        <input type="hidden" name="texto" th:value="${mujer.idMujer}"/>
+                        <input type="hidden" name="texto" th:value="${mujer.cantidad}"/>
+                        <button class="btn btn-ligth" id="addCar" name="addCar" onclick="addCard(this.form)"
+                                type="button">
+                            <i class="fas fa-cart-plus"></i>
+                        </button>
+                    </form>
+                    <p class="card-text">[[${mujer.talla}]]</p>  
                 </div>                
             </div>
             <div th:if="${mujeres == null or mujeres.empty}"  th:text="#{mujer.no_mostrar}">

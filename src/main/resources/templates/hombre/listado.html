@@ -13,13 +13,21 @@
             <h2 th:text="#{index.titulo}">Nuestros Articulos</h2>            
             <div class="row row-cols-3" th:if="${hombres != null and !hombres.empty}">
                 <div class="card" th:each="hombre : ${hombres}" >
-                    <img src="/img/leopardo.jpg" class="card-img-top" alt="equipo"/>  
                     <div class="card-body">
                         <h5 class="card-title">[[${hombre.descripcion}]]</h5>
+                        <img th:src="@{${hombre.rutaImagen}}" width="120"/>
                         <h6 class="card-subtitle mb-2 text-muted text-end">[[${new java.text.DecimalFormat('¢#,##0.00').format(hombre.precio)}]]</h6>
-                        <p class="card-text">[[${hombre.color}]]</p>     
-                        <p class="card-text">[[${hombre.talla}]]</p>   
+                        <p class="card-text">[[${hombre.color}]]</p>   
                     </div>
+                    <form>
+                        <input type="hidden" name="texto" th:value="${hombre.idHombre}"/>
+                        <input type="hidden" name="texto" th:value="${hombre.cantidad}"/>
+                        <button class="btn btn-ligth" id="addCar" name="addCar" onclick="addCard(this.form)"
+                                type="button">
+                            <i class="fas fa-cart-plus"></i>
+                        </button>
+                    </form>
+                    <p class="card-text">[[${hombre.talla}]]</p> 
                 </div>                
             </div>
             <div th:if="${hombres == null or hombres.empty}"  th:text="#{hombre.no_mostrar}">

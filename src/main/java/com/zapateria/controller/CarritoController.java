@@ -1,52 +1,85 @@
 package com.zapateria.controller;
 
-import com.zapateria.domain.Carrito;
-import com.zapateria.services.CarritoService;
+import com.zapateria.domain.Articulo;
+import com.zapateria.domain.Item;
+import com.zapateria.services.ArticuloService;
+import com.zapateria.services.ItemService;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.servlet.ModelAndView;
 
 @Controller
+@Slf4j
 public class CarritoController {
 
     @Autowired
-
-    private CarritoService carritoService;
+    private ItemService itemService;
+    
+    @Autowired
+    private ArticuloService articuloService;
 
     @GetMapping("/carrito/listado")
     public String inicio(Model model) {
 
-        var carritos = carritoService.getCarrito(); //hace select de la tabla y devuelve un arraylist
-
-        model.addAttribute("carritos", carritos);
-
+        var items = itemService.getItems(); //hace select de la tabla y devuelve un arraylist
+        model.addAttribute("items", items);
+        var carritoTotalVenta = 0;
+        for (Item i : items) {
+            carritoTotalVenta += (i.getCantidad() * i.getPrecio());
+        }
+        model.addAttribute("carritoTotal", carritoTotalVenta);
         return "/carrito/listado";
     }
 
-    //mapeo de los recursos
-    @GetMapping("/carrito/nuevo")
-    public String carritoNuevo(Carrito carrito) {
+    @GetMapping("/carrito/agregar/{idArticulo}")
+    public ModelAndView agregarArticulo(Model model, Item item) {
+        Item item2 = itemService.getItem(item);
+        if (item2 == null) {
+            Articulo articulo = articuloService.getArticulo(item);
+            item2 = new Item(articulo);
+        }
+        itemService.save(item2);
+        var lista = itemService.getItems();
+        var totalCarritos = 0;
+        var carritoTotalVenta = 0;
+        for (Item i : lista) {
+            totalCarritos += i.getCantidad();
+            carritoTotalVenta += (i.getCantidad() * i.getPrecio());
+        }
+        model.addAttribute("listaItems", lista);
+        model.addAttribute("listaTotal", totalCarritos);
+        model.addAttribute("carritoTotal", carritoTotalVenta);
+        return new ModelAndView("/carrito/fragmentosCarrito :: verCarrito");
+    }
+
+    @GetMapping("/carrito/modificar/{idArticulo}")
+    public String modificarCarrito(Item item, Model model) {
+        item = itemService.getItem(item);
+        model.addAttribute("item", item);
         return "/carrito/modificar";
+    }
+
+    @GetMapping("/carrito/eliminar/{idArticulo}")
+    public String eliminarItem(Item item) {
+        itemService.delete(item);
+        return "redirect:/carrito/listado";
     }
 
     @PostMapping("/carrito/guardar")
-    public String carritoGuardar(Carrito carrito) {
-        carritoService.save(carrito);
-        return "redirect:/carrito/listado"; //para redireccionar la ruta
-    }
-
-    @GetMapping("/carrito/actualiza/{idCarrito}")
-    public String carritoActualiza(Carrito carrito, Model model) {
-        carrito = carritoService.getCarrito(carrito); // va y hace un select en la tabla
-        model.addAttribute("carrito", carrito);
-        return "/carrito/modificar";
-    }
-
-    @GetMapping("/carrito/elimina/{idCarrito}")
-    public String carritoElimina(Carrito carrito) {
-        carritoService.delete(carrito); // va y hace un select en la tabla
+    public String guardarItem(Item item) {
+        itemService.actualiza(item);
         return "redirect:/carrito/listado";
     }
+
+    @GetMapping("/facturar/carrito")
+    public String facturarCarrito() {
+        itemService.facturar();
+        return "redirect:/";
+    }
+
 }
+

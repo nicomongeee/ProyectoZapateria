@@ -32,21 +32,15 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
         http.authorizeRequests()
                 .antMatchers("/usuario/nuevo", "usuario/guardar", "/usuario/modificar/**", "/usuario/eliminar/**",
-                        "/mujer/nuevo", "mujer/guardar", "/mujer/modificar/**", "/mujer/eliminar/**",
-                        "/hombre/nuevo", "hombre/guardar", "/hombre/modificar/**", "/hombre/eliminar/**",
-                        "/accesorio/nuevo", "accesorio/guardar", "/accesorio/modificar/**", "/accesorio/eliminar/**",
                         "/usuario/nuevo", "usuario/guardar", "/usuario/modificar/**", "/usuario/eliminar/**")
                 .hasRole("ADMIN")
-        .antMatchers("/usuario/listado",
-                        "/mujer/listado",
-                        "/hombre/listado",
-                        "/accesorio/listado")
+        .antMatchers("/usuario/listado")
                 .hasAnyRole("ADMIN", "VENDEDOR")
         .antMatchers("/")
                 .hasAnyRole("ADMIN", "VENDEDOR", "USER")
                 .antMatchers("/","/carrito/**")
                 .permitAll()
-                .antMatchers("/factura/carrito")
+                .antMatchers("/facturar/carrito")
                 .authenticated()
                 .and().formLogin().loginPage("/login")
                 .and().exceptionHandling().accessDeniedPage("/errores/403");

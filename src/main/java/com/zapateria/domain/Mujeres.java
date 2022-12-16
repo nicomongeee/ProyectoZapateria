@@ -23,6 +23,8 @@ public class Mujeres implements Serializable {
     private int precio;
     private String descripcion;
     private boolean activo;
+    @Column(name="ruta_imagen")
+    private String rutaImagen;
 
     public Mujeres(Long idCategoria, double cantidad, int talla, String color, int precio, String descripcion, boolean activo) {
         this.idCategoria = idCategoria;
